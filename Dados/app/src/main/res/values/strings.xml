@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dados</string>
+    <string name="d6">D6</string>
+    <string name="d12">D12</string>
+    <string name="d20">D20</string>
+    <string name="textview">TextView</string>
+    <string name="textview12">TextView</string>
+</resources>
