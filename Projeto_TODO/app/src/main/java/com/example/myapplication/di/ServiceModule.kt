@@ -13,7 +13,7 @@ object ServiceModule {
 
     @Singleton
     @Provides
-    fun returRepository(): Repository{
+    fun returnRepository(): Repository{
         return Repository()
     }
 }

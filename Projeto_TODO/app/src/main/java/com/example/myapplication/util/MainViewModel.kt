@@ -10,6 +10,7 @@ import com.example.myapplication.model.Categoria
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,18 +25,25 @@ class MainViewModel @Inject constructor (
 
     val myCategoriaResponse: LiveData<Response<List<Categoria>>> = _myCategoriaResponse
 
+    val dataSelecionada = MutableLiveData<LocalDate>()
+
     init {
-        lisCategoria()
+        /*não será preciso utlizar esse método agora, ele só será utilizado quando o FormFragment
+        for acessado
+
+         */
+       //listCategoria()
+
     }
 
-    fun lisCategoria(){
+    fun listCategoria() {
 
         viewModelScope.launch {
             try {
                 val response = repository.listCategoria()
                 _myCategoriaResponse.value = response
-            }catch (e:Exception){
-                Log.d("ERRO", e.message. toString())
+            } catch (e: Exception) {
+                Log.d("ERRO", e.message.toString())
             }
 
         }

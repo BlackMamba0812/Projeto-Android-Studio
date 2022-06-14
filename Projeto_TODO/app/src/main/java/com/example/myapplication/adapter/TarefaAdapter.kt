@@ -25,7 +25,7 @@ class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
         holder.binding.textResponsVel.text = tarefa.responsavel
         holder.binding.textData.text = tarefa.data
         holder.binding.switchAtivo.isChecked = tarefa.status
-        holder.binding.textCategoria.text = tarefa.categoria.descrição
+        holder.binding.textCategoria.text = tarefa.categoria.descricao
     }
 
     override fun getItemCount(): Int {
