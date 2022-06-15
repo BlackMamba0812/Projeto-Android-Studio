@@ -1,21 +1,21 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.service.controls.actions.FloatAction
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.adapter.TarefaAdapter
 import com.example.myapplication.databinding.FragmentListBinding
-import com.example.myapplication.model.Tarefa
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.myapplication.util.MainViewModel
 
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
+    private val mainViewModel: MainViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -25,6 +25,8 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentListBinding.inflate(layoutInflater, container,false)
+
+        mainViewModel.listTarefa()
 
 
 
@@ -40,6 +42,12 @@ class ListFragment : Fragment() {
 
         binding.floatingAdd.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_formFragment)
+        }
+
+        mainViewModel.myCategoriaResponse.observe(viewLifecycleOwner){
+            response -> if (response.body() != null){
+                adapter.setList(response.body()!!)
+            }
         }
 
         return binding.root

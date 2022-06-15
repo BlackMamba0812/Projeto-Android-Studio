@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.CardLayoutBinding
+import com.example.myapplication.model.Categoria
 import com.example.myapplication.model.Tarefa
 
 class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
@@ -33,8 +34,8 @@ class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
 
     }
 
-    fun setList (list: List<Tarefa>){
-        listTarefa = list
+    fun setList (list: List<Categoria>){
+        listTarefa = listTarefa
         notifyDataSetChanged()
     }
 }
