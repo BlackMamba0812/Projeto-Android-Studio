@@ -35,7 +35,7 @@ class ListFragment : Fragment(), TaskClickListener {
 
         //Configuração da RecyclerView
 
-        val adapter =TarefaAdapter(this, mainViewModel)
+        val adapter =TarefaAdapter(this, mainViewModel, requireContext())
         binding.recyclerTarefa.layoutManager = LinearLayoutManager(context)
         binding.recyclerTarefa.adapter = adapter
         binding.recyclerTarefa.setHasFixedSize(true)
@@ -43,6 +43,7 @@ class ListFragment : Fragment(), TaskClickListener {
 
 
         binding.floatingAdd.setOnClickListener {
+            mainViewModel.tarefaSelecionada = null
             findNavController().navigate(R.id.action_listFragment_to_formFragment)
         }
 
@@ -57,6 +58,7 @@ class ListFragment : Fragment(), TaskClickListener {
 
     override fun onTaskClickListener(tarefa: Tarefa) {
         mainViewModel.tarefaSelecionada = tarefa
+        findNavController().navigate(R.id.action_listFragment_to_formFragment)
     }
 }
 

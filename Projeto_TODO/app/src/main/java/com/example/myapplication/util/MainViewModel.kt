@@ -65,24 +65,36 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun listTarefa(){
+    fun listTarefa() {
         viewModelScope.launch {
             try {
                 val response = repository.listTarefa()
-                _myTarefaResponse.value =response
-            } catch (e: Exception){
+                _myTarefaResponse.value = response
+            } catch (e: Exception) {
                 Log.d("Erro", e.message.toString())
             }
         }
+    }
 
-        fun updateTrefa(tarefa: Tarefa){
+        fun updateTarefa(tarefa: Tarefa){
             viewModelScope.launch {
                 try {
                     repository.updateTarefa(tarefa)
+                    listTarefa()
                 }catch (e: Exception){
                     Log.d("Erro", e.message.toString())
                 }
             }
         }
+
+    fun deleteTarefa(id:Long){
+        viewModelScope.launch {
+            try {
+                repository.deletearefa(id)
+                listTarefa()
+            }catch (e: Exception){
+                Log.d("ERRO", e. message.toString())
+            }
+        }
     }
-}
+    }
